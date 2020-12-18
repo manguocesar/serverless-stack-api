@@ -32,7 +32,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+      Resource: "arn:aws:dynamodb:eu-west-1:*:*"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -44,6 +44,7 @@ functions:
       - http:
           path: notes
           method: post
+          cors: true
   get:
     handler: get.main
     events:
