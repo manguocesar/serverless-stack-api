@@ -1,5 +1,8 @@
 export default function handler(lambda) {
     return async function (event, context) {
+
+      context.callbackWaitsForEmptyEventLoop = false;
+
       let body, statusCode;
       try {
         // Run the Lambda
@@ -7,8 +10,7 @@ export default function handler(lambda) {
         statusCode = 200;
       } catch (e) {
         console.log(e);
-        body = { error: e.message };
-        statusCode = 500;
+  return [500, { error: e.message }];
       }
       return {
         statusCode,
